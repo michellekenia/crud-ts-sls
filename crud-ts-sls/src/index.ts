@@ -3,6 +3,7 @@ import CriarUsuarioController from "./controllers/CriarUsuario.controller";
 import { lidarComRespostaDeSucesso } from "./utils/respostas.http";
 import BuscarUsuariosController from "./controllers/BuscarUsuarios.controllers";
 import AtualizarUsuarioController from "./controllers/AtualizarUsuario.controller";
+import DeletarUsuarioController from "./controllers/DeletarUsuario.controller";
 
 export async function buscar(event:APIGatewayProxyEvent) {
  const controller = new BuscarUsuariosController()
@@ -23,6 +24,8 @@ export async function atualizar(event:APIGatewayProxyEvent) {
 }
 
 export async function deletar(event:APIGatewayProxyEvent) {
-  return lidarComRespostaDeSucesso(200, {})
+  const controller = new DeletarUsuarioController()
+  const resposta = await controller.executar(event)
+  return resposta
 }
 
