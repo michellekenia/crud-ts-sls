@@ -2,6 +2,7 @@ import { APIGatewayProxyEvent } from "aws-lambda";
 import CriarUsuarioController from "./controllers/CriarUsuario.controller";
 import { lidarComRespostaDeSucesso } from "./utils/respostas.http";
 import BuscarUsuariosController from "./controllers/BuscarUsuarios.controllers";
+import AtualizarUsuarioController from "./controllers/AtualizarUsuario.controller";
 
 export async function buscar(event:APIGatewayProxyEvent) {
  const controller = new BuscarUsuariosController()
@@ -16,7 +17,9 @@ export async function criar(event:APIGatewayProxyEvent) {
 }
 
 export async function atualizar(event:APIGatewayProxyEvent) {
-  return lidarComRespostaDeSucesso(200, {})
+  const controller = new AtualizarUsuarioController()
+  const resposta = await controller.executar(event)
+  return resposta
 }
 
 export async function deletar(event:APIGatewayProxyEvent) {
