@@ -1,41 +1,18 @@
 import { APIGatewayProxyEvent } from "aws-lambda";
-import Usuario, { UsuarioDados } from "./entidades/Usuario";
-import Persona, { PersonaDados } from "./entidades/Persona";
-import dados from "./utils/bancoDeDados";
 import CriarUsuarioController from "./controllers/CriarUsuario.controller";
-
-const parametrosPersona: PersonaDados.Entrada = {
-        data: "",
-        comentario: ""
-}
-const persona = new Persona(parametrosPersona)
-
-const parametros: UsuarioDados.Entrada = {
-        nome: '',
-        email: '',
-        cargo: '',
-        personas: [persona],
-        kudos: [],
-        pdi: [], 
-}
-const usuario = new Usuario(parametros)
-
-const lidarComRespostaDeSucesso = (statusCode: number, body?:object) => ({
-  statusCode: statusCode,
-  body: JSON.stringify(body)
-})
+import { lidarComRespostaDeSucesso } from "./utils/respostas.http";
+import BuscarUsuariosController from "./controllers/BuscarUsuarios.controllers";
 
 export async function buscar(event:APIGatewayProxyEvent) {
-  const usuarios = {itens: dados}
-  return lidarComRespostaDeSucesso(200, usuarios)
+ const controller = new BuscarUsuariosController()
+ const resposta = await controller.executar(event)
+ return resposta
 }
 
 export async function criar(event:APIGatewayProxyEvent) {
   const controller = new CriarUsuarioController()
-  const resposta = controller.executar(event)
-  console.log("Valor resposta" , resposta);
-  
-  return lidarComRespostaDeSucesso(201, resposta)
+  const resposta = await controller.executar(event)
+  return resposta
 }
 
 export async function atualizar(event:APIGatewayProxyEvent) {
