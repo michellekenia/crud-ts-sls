@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+      "baseUrl": "./",
+      "module": "commonjs",
+      "esModuleInterop": true,
+      "preserveConstEnums": true,
+      "strictNullChecks": true,
+      "noUnusedParameters": true,
+      "sourceMap": true,
+      "allowJs": true,
+      "target": "ES2018",
+      "outDir": ".build",
+      "moduleResolution": "node",
+      "lib": ["ES2015", "ES2016", "ES2017", "ES2018"],
+      "rootDir": "./",
+      "resolveJsonModule": true,
+      "skipLibCheck": true,
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
+      "paths": {
+        "@/*": ["src/*"]
+      }
+    },
+    "include": ["src", "tests", "scripts"],
+    "exclude": ["node_modules", "**/*.spec.tsx", "**/*.spec.ts"]
+  }

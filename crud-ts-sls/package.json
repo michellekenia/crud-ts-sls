@@ -1,0 +1,21 @@
+{
+  "name": "crud-ts-sls",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "serverless offline --noPrependStageInUrl --noAuth --stage local"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.131",
+    "@types/node": "^20.11.5",
+    "serverless-offline": "^13.3.3",
+    "serverless-plugin-typescript": "^2.1.5",
+    "serverless-tscpaths": "^0.0.8",
+    "typescript": "^5.3.3"
+  }
+}
