@@ -12,9 +12,30 @@ plugins:
   
 
 functions:
-  api:
-    handler: ./src/index.handler
+  buscarTodosUsuarios:
+    handler: ./src/index.buscar
     events:
       - httpApi:
-          path: /
+          path: /buscar/usuarios
           method: get
+          
+  cadastrarUsuario:
+      handler: ./src/index.criar
+      events:
+        - httpApi:
+            path: /criar/usuario
+            method: post
+
+  atualizarUsuario:
+      handler: ./src/index.atualizar
+      events:
+        - httpApi:
+            path: /atualizar/usuario
+            method: patch
+
+  deletarUsuario:
+      handler: ./src/index.deletar
+      events:
+        - httpApi:
+            path: /deletar/usuario
+            method: delete         

@@ -1,27 +1,52 @@
 import { APIGatewayProxyEvent } from "aws-lambda";
-import Usuario from "./entidades/Usuario";
+import Usuario, { UsuarioDados } from "./entidades/Usuario";
+import Persona, { PersonaDados } from "./entidades/Persona";
 
-const parametros = {
+const parametrosPersona: PersonaDados.Entrada = {
+        data: "",
+        comentario: ""
+}
+const persona = new Persona(parametrosPersona)
+
+const parametros: UsuarioDados.Entrada = {
         nome: '',
         email: '',
         cargo: '',
-        personas: [],
+        personas: [persona],
         kudos: [],
-        pdi: []
+        pdi: [], 
 }
 const usuario = new Usuario(parametros)
 
-module.exports.handler = async (event:APIGatewayProxyEvent) => {
+export async function buscar(event:APIGatewayProxyEvent) {
   return {
     statusCode: 200,
     body: JSON.stringify(
       {
-        meu_usuario:usuario,
-        message: "Go Serverless v3.0! Your function executed successfully!",
-        input: event,
-      },
-      null,
-      2
-    ),
+        'itens':[usuario]        
+      }
+    )
   };
-};
+}
+
+export async function criar(event:APIGatewayProxyEvent) {
+  return {
+    statusCode: 201,
+    body: JSON.stringify({})
+  };
+}
+
+export async function atualizar(event:APIGatewayProxyEvent) {
+  return {
+    statusCode: 200,
+    body: JSON.stringify({})
+  };
+}
+
+export async function deletar(event:APIGatewayProxyEvent) {
+  return {
+    statusCode: 200,
+    body: JSON.stringify({})
+  };
+}
+
