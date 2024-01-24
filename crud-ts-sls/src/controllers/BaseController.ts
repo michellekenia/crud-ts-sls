@@ -1,7 +1,7 @@
 import { APIGatewayProxyEvent } from "aws-lambda";
 
 export interface SaidaDoController{
-    statuscode:number
+    statusCode:number
     body:string
 }
 
